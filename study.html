@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respiratory Physiology Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .question { margin-bottom: 20px; }
+        .question h2 { font-size: 18px; }
+        .options { list-style-type: none; padding: 0; }
+        .options li { margin: 5px 0; }
+        .feedback { margin-top: 10px; font-weight: bold; }
+        button { margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Respiratory Physiology Quiz</h1>
+    <div id="quiz"></div>
+    <button onclick="showScore()">Show Score</button>
+    <div id="score" class="feedback"></div>
+
+    <script>
+        const quizData = [
+            {
+                question: "Which lung volume is the amount of air remaining in the lungs after a maximal exhalation?",
+                options: ["Residual Volume (RV)", "Expiratory Reserve Volume (ERV)", "Inspiratory Reserve Volume (IRV)", "Tidal Volume (TV)"],
+                answer: 0
+            },
+            {
+                question: "What type of hypoxia results from a reduced blood flow to tissues?",
+                options: ["Hypoxic hypoxia", "Anemic hypoxia", "Stagnant hypoxia", "Histotoxic hypoxia"],
+                answer: 2
+            },
+            {
+                question: "What does the inspiratory reserve volume (IRV) represent?",
+                options: ["The volume of air inhaled during a normal breath", "The maximum volume of air that can be inhaled after a normal inhalation", "The volume of air remaining after maximal exhalation", "The total volume of air the lungs can hold"],
+                answer: 1
+            },
+            {
+                question: "Which structure prevents food from entering the trachea during swallowing?",
+                options: ["Epiglottis", "Larynx", "Bronchi", "Diaphragm"],
+                answer: 0
+            },
+            {
+                question: "What is the primary muscle involved in quiet breathing?",
+                options: ["Intercostal muscles", "Diaphragm", "Abdominal muscles", "Trapezius"],
+                answer: 1
+            },
+            {
+                question: "What is hypoventilation?",
+                options: ["Increased respiratory rate", "Decreased respiratory rate", "Normal breathing pattern", "Rapid breathing pattern"],
+                answer: 1
+            },
+            {
+                question: "Which of the following best describes the function of the larynx?",
+                options: ["Gas exchange", "Filtering air", "Protecting the lungs", "Sound production"],
+                answer: 3
+            },
+            {
+                question: "What condition is characterized by a collapsed lung?",
+                options: ["Pulmonary fibrosis", "Pneumothorax", "Bronchitis", "Asthma"],
+                answer: 1
+            },
+            {
+                question: "What effect does hypoxemia have on the body?",
+                options: ["Increases oxygen levels", "Increases blood pressure", "Decreases oxygen levels", "Decreases respiratory rate"],
+                answer: 2
+            },
+            {
+                question: "Which of the following is a key symptom of chronic obstructive pulmonary disease (COPD)?",
+                options: ["Shortness of breath", "Increased lung volumes", "Increased compliance", "Decreased PaCO₂ levels"],
+                answer: 0
+            },
+            {
+                question: "What part of the brain detects changes in blood pH and CO₂ levels to control respiration?",
+                options: ["Cerebellum", "Medulla oblongata", "Cerebrum", "Hypothalamus"],
+                answer: 1
+            },
+            {
+                question: "What does hypoxia refer to?",
+                options: ["Low oxygen in tissues", "Low oxygen in the blood", "Low carbon dioxide in the blood", "Low carbon dioxide in tissues"],
+                answer: 0
+            },
+            {
+                question: "What is the normal respiratory rate in adults at rest?",
+                options: ["8-10 breaths per minute", "12-20 breaths per minute", "20-30 breaths per minute", "30-40 breaths per minute"],
+                answer: 1
+            },
+            {
+                question: "What is the effect of hyperventilation on blood pH?",
+                options: ["It decreases pH", "It increases pH", "It has no effect on pH", "It stabilizes pH"],
+                answer: 1
+            },
+            {
+                question: "Which respiratory structure is responsible for warming, humidifying, and filtering the air?",
+                options: ["Alveoli", "Bronchioles", "Nasal cavity", "Pharynx"],
+                answer: 2
+            },
+            {
+                question: "What condition is characterized by inflammation and excess mucus in the bronchi?",
+                options: ["Bronchitis", "Pneumonia", "Asthma", "Emphysema"],
+                answer: 0
+            },
+            {
+                question: "Which respiratory condition involves reversible airway obstruction?",
+                options: ["Pulmonary fibrosis", "Emphysema", "Asthma", "Pneumothorax"],
+                answer: 2
+            },
+            {
+                question: "Which gas law explains why a decrease in lung volume leads to an increase in pressure during exhalation?",
+                options: ["Charles's Law", "Henry's Law", "Dalton's Law", "Boyle's Law"],
+                answer: 3
+            },
+            {
+                question: "What effect does histotoxic hypoxia have on the body?",
+                options: ["Oxygen is delivered but tissues cannot use it", "Decreased blood flow to tissues", "Low oxygen levels in the blood", "Reduced hemoglobin levels"],
+                answer: 0
+            },
+            {
+                question: "Which lung condition is associated with an increase in residual volume (RV)?",
+                options: ["Pneumonia", "Pulmonary fibrosis", "Emphysema", "Pulmonary edema"],
+                answer: 2
+            },
+            {
+                question: "What happens to the FEV₁/FVC ratio in restrictive lung disease?",
+                options: ["It increases", "It decreases", "It remains normal", "It fluctuates"],
+                answer: 2
+            },
+            {
+                question: "What does spirometry measure?",
+                options: ["Blood pH levels", "Lung volumes and capacities", "Diffusion capacity", "Blood CO₂ levels"],
+                answer: 1
+            },
+            {
+                question: "What type of hypoxia is caused by decreased hemoglobin concentration?",
+                options: ["Anemic hypoxia", "Hypoxic hypoxia", "Stagnant hypoxia", "Histotoxic hypoxia"],
+                answer: 0
+            },
+            {
+                question: "What effect does anemia have on oxygen delivery?",
+                options: ["Increases oxygen delivery", "Decreases oxygen delivery", "No effect on oxygen delivery", "Increases CO₂ delivery"],
+                answer: 1
+            },
+            {
+                question: "What does PaCO₂ measure?",
+                options: ["Oxygen in arterial blood", "Oxygen in venous blood", "CO₂ in arterial blood", "CO₂ in venous blood"],
+                answer: 2
+            },
+            {
+                question: "What is the function of the pleura surrounding the lungs?",
+                options: ["Protect the lungs from pathogens", "Prevent lung collapse", "Reduce friction during breathing", "Increase lung compliance"],
+                answer: 2
+            },
+            {
+                question: "What condition results from a blood clot in the pulmonary arteries?",
+                options: ["Pulmonary embolism", "Pneumonia", "Emphysema", "Pulmonary fibrosis"],
+                answer: 0
+            },
+            {
+                question: "What is the purpose of inspiratory reserve volume (IRV)?",
+                options: ["The volume of air inhaled during a normal breath", "The additional volume of air that can be inhaled after a normal inspiration", "The volume of air that can be exhaled forcibly", "The amount of air remaining in the lungs after maximal exhalation"],
+                answer: 1
+            },
+            {
+                question: "What is a common cause of metabolic acidosis?",
+                options: ["Hyperventilation", "Hypoventilation", "Excessive vomiting", "Diabetic ketoacidosis"],
+                answer: 3
+            },
+            {
+                question: "What does tidal volume (TV) refer to?",
+                options: ["Air remaining after exhalation", "Air inhaled or exhaled in a normal breath", "Total lung capacity", "Volume of forced exhalation"],
+                answer: 1
+            }
+        ];
+
+
+        let score = 0;
+
+        function loadQuiz() {
+            const quizContainer = document.getElementById("quiz");
+            quizContainer.innerHTML = "";
+            quizData.forEach((data, index) => {
+                const questionDiv = document.createElement("div");
+                questionDiv.classList.add("question");
+
+                const questionTitle = document.createElement("h2");
+                questionTitle.innerText = (index + 1) + ". " + data.question;
+                questionDiv.appendChild(questionTitle);
+
+                const optionsList = document.createElement("ul");
+                optionsList.classList.add("options");
+
+                data.options.forEach((option, i) => {
+                    const optionItem = document.createElement("li");
+                    const optionButton = document.createElement("button");
+                    optionButton.innerText = option;
+                    optionButton.onclick = () => checkAnswer(index, i, optionButton);
+                    optionItem.appendChild(optionButton);
+                    optionsList.appendChild(optionItem);
+                });
+
+                questionDiv.appendChild(optionsList);
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        function checkAnswer(questionIndex, optionIndex, button) {
+            const isCorrect = optionIndex === quizData[questionIndex].answer;
+            console.log('Question: ' + (questionIndex + 1) + ' Answer: ' + quizData[questionIndex].answer);
+            const feedback = document.createElement("div");
+            feedback.classList.add("feedback");
+            feedback.innerText = isCorrect ? "Correct!" : "Incorrect!";
+            button.parentNode.appendChild(feedback);
+
+            if (isCorrect) {
+                score++;
+            }
+
+            // Disable all options for the current question
+            const options = button.parentNode.parentNode.querySelectorAll("button");
+            options.forEach(btn => btn.disabled = true);
+        }
+
+        function showScore() {
+            const scoreContainer = document.getElementById("score");
+            scoreContainer.innerText = "You scored " + score + " out of " + quizData.length;
+        }
+
+        loadQuiz();
+    </script>
+</body>
+</html>
