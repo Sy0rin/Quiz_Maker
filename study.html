@@ -23,157 +23,237 @@
 
     <script>
         const quizData = [
-            {
-                question: "Which lung volume is the amount of air remaining in the lungs after a maximal exhalation?",
-                options: ["Residual Volume (RV)", "Expiratory Reserve Volume (ERV)", "Inspiratory Reserve Volume (IRV)", "Tidal Volume (TV)"],
-                answer: 0
-            },
-            {
-                question: "What type of hypoxia results from a reduced blood flow to tissues?",
-                options: ["Hypoxic hypoxia", "Anemic hypoxia", "Stagnant hypoxia", "Histotoxic hypoxia"],
-                answer: 2
-            },
-            {
-                question: "What does the inspiratory reserve volume (IRV) represent?",
-                options: ["The volume of air inhaled during a normal breath", "The maximum volume of air that can be inhaled after a normal inhalation", "The volume of air remaining after maximal exhalation", "The total volume of air the lungs can hold"],
-                answer: 1
-            },
-            {
-                question: "Which structure prevents food from entering the trachea during swallowing?",
-                options: ["Epiglottis", "Larynx", "Bronchi", "Diaphragm"],
-                answer: 0
-            },
-            {
-                question: "What is the primary muscle involved in quiet breathing?",
-                options: ["Intercostal muscles", "Diaphragm", "Abdominal muscles", "Trapezius"],
-                answer: 1
-            },
-            {
-                question: "What is hypoventilation?",
-                options: ["Increased respiratory rate", "Decreased respiratory rate", "Normal breathing pattern", "Rapid breathing pattern"],
-                answer: 1
-            },
-            {
-                question: "Which of the following best describes the function of the larynx?",
-                options: ["Gas exchange", "Filtering air", "Protecting the lungs", "Sound production"],
-                answer: 3
-            },
-            {
-                question: "What condition is characterized by a collapsed lung?",
-                options: ["Pulmonary fibrosis", "Pneumothorax", "Bronchitis", "Asthma"],
-                answer: 1
-            },
-            {
-                question: "What effect does hypoxemia have on the body?",
-                options: ["Increases oxygen levels", "Increases blood pressure", "Decreases oxygen levels", "Decreases respiratory rate"],
-                answer: 2
-            },
-            {
-                question: "Which of the following is a key symptom of chronic obstructive pulmonary disease (COPD)?",
-                options: ["Shortness of breath", "Increased lung volumes", "Increased compliance", "Decreased PaCO₂ levels"],
-                answer: 0
-            },
-            {
-                question: "What part of the brain detects changes in blood pH and CO₂ levels to control respiration?",
-                options: ["Cerebellum", "Medulla oblongata", "Cerebrum", "Hypothalamus"],
-                answer: 1
-            },
-            {
-                question: "What does hypoxia refer to?",
-                options: ["Low oxygen in tissues", "Low oxygen in the blood", "Low carbon dioxide in the blood", "Low carbon dioxide in tissues"],
-                answer: 0
-            },
-            {
-                question: "What is the normal respiratory rate in adults at rest?",
-                options: ["8-10 breaths per minute", "12-20 breaths per minute", "20-30 breaths per minute", "30-40 breaths per minute"],
-                answer: 1
-            },
-            {
-                question: "What is the effect of hyperventilation on blood pH?",
-                options: ["It decreases pH", "It increases pH", "It has no effect on pH", "It stabilizes pH"],
-                answer: 1
-            },
-            {
-                question: "Which respiratory structure is responsible for warming, humidifying, and filtering the air?",
-                options: ["Alveoli", "Bronchioles", "Nasal cavity", "Pharynx"],
-                answer: 2
-            },
-            {
-                question: "What condition is characterized by inflammation and excess mucus in the bronchi?",
-                options: ["Bronchitis", "Pneumonia", "Asthma", "Emphysema"],
-                answer: 0
-            },
-            {
-                question: "Which respiratory condition involves reversible airway obstruction?",
-                options: ["Pulmonary fibrosis", "Emphysema", "Asthma", "Pneumothorax"],
-                answer: 2
-            },
-            {
-                question: "Which gas law explains why a decrease in lung volume leads to an increase in pressure during exhalation?",
-                options: ["Charles's Law", "Henry's Law", "Dalton's Law", "Boyle's Law"],
-                answer: 3
-            },
-            {
-                question: "What effect does histotoxic hypoxia have on the body?",
-                options: ["Oxygen is delivered but tissues cannot use it", "Decreased blood flow to tissues", "Low oxygen levels in the blood", "Reduced hemoglobin levels"],
-                answer: 0
-            },
-            {
-                question: "Which lung condition is associated with an increase in residual volume (RV)?",
-                options: ["Pneumonia", "Pulmonary fibrosis", "Emphysema", "Pulmonary edema"],
-                answer: 2
-            },
-            {
-                question: "What happens to the FEV₁/FVC ratio in restrictive lung disease?",
-                options: ["It increases", "It decreases", "It remains normal", "It fluctuates"],
-                answer: 2
-            },
-            {
-                question: "What does spirometry measure?",
-                options: ["Blood pH levels", "Lung volumes and capacities", "Diffusion capacity", "Blood CO₂ levels"],
-                answer: 1
-            },
-            {
-                question: "What type of hypoxia is caused by decreased hemoglobin concentration?",
-                options: ["Anemic hypoxia", "Hypoxic hypoxia", "Stagnant hypoxia", "Histotoxic hypoxia"],
-                answer: 0
-            },
-            {
-                question: "What effect does anemia have on oxygen delivery?",
-                options: ["Increases oxygen delivery", "Decreases oxygen delivery", "No effect on oxygen delivery", "Increases CO₂ delivery"],
-                answer: 1
-            },
-            {
-                question: "What does PaCO₂ measure?",
-                options: ["Oxygen in arterial blood", "Oxygen in venous blood", "CO₂ in arterial blood", "CO₂ in venous blood"],
-                answer: 2
-            },
-            {
-                question: "What is the function of the pleura surrounding the lungs?",
-                options: ["Protect the lungs from pathogens", "Prevent lung collapse", "Reduce friction during breathing", "Increase lung compliance"],
-                answer: 2
-            },
-            {
-                question: "What condition results from a blood clot in the pulmonary arteries?",
-                options: ["Pulmonary embolism", "Pneumonia", "Emphysema", "Pulmonary fibrosis"],
-                answer: 0
-            },
-            {
-                question: "What is the purpose of inspiratory reserve volume (IRV)?",
-                options: ["The volume of air inhaled during a normal breath", "The additional volume of air that can be inhaled after a normal inspiration", "The volume of air that can be exhaled forcibly", "The amount of air remaining in the lungs after maximal exhalation"],
-                answer: 1
-            },
-            {
-                question: "What is a common cause of metabolic acidosis?",
-                options: ["Hyperventilation", "Hypoventilation", "Excessive vomiting", "Diabetic ketoacidosis"],
-                answer: 3
-            },
-            {
-                question: "What does tidal volume (TV) refer to?",
-                options: ["Air remaining after exhalation", "Air inhaled or exhaled in a normal breath", "Total lung capacity", "Volume of forced exhalation"],
-                answer: 1
-            }
-        ];
+    {
+        "question": "What is the proper depth for an endotracheal tube during orotracheal intubation?",
+        "options": [
+            "15-16 cm",
+            "20-21 cm",
+            "25-26 cm",
+            "18-19 cm"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is the purpose of a PEEP valve?",
+        "options": [
+            "To reduce airway resistance",
+            "To maintain alveolar volumes and prevent collapse",
+            "To measure tidal volume",
+            "To monitor blood oxygen levels"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is the normal location of an endotracheal tube tip on a chest X-ray?",
+        "options": [
+            "5-7 cm above the carina",
+            "2-4 cm above the carina",
+            "1-2 cm below the vocal cords",
+            "At the level of the third rib"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What suction technique is used when the catheter is attached to the ventilator circuit?",
+        "options": [
+            "Open suctioning",
+            "Closed suctioning",
+            "Direct suctioning",
+            "Indirect suctioning"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is the formula for calculating minute ventilation?",
+        "options": [
+            "VE = Vt × f",
+            "VE = PEEP × RR",
+            "VE = CO × HR",
+            "VE = FiO2 × Vt"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "What does the BLUE protocol assess?",
+        "options": [
+            "Neurological function",
+            "Acute respiratory failure",
+            "Cardiac output",
+            "Cerebral blood flow"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is the primary cause of airway trauma during intubation?",
+        "options": [
+            "Tube movement",
+            "High suction pressure",
+            "Patient coughing",
+            "Improper catheter size"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "What is the normal PIP (Peak Inspiratory Pressure) to minimize barotrauma?",
+        "options": [
+            "20-25 cmH2O",
+            "25-30 cmH2O",
+            "30-35 cmH2O",
+            "35-40 cmH2O"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Which type of hypoxia is caused by decreased hemoglobin levels?",
+        "options": [
+            "Hypoxic hypoxia",
+            "Histotoxic hypoxia",
+            "Anemic hypoxia",
+            "Stagnant hypoxia"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "What does a color change from purple to gold in a CO2 detector indicate?",
+        "options": [
+            "Presence of carbon dioxide",
+            "Absence of oxygen",
+            "Hyperventilation",
+            "Collapsed lung"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "What is a common indication for NT suctioning?",
+        "options": [
+            "Blocked airway",
+            "Retained secretions with ineffective cough",
+            "Collapsed lung",
+            "Airway hyperresponsiveness"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is the role of static compliance calculation?",
+        "options": [
+            "Evaluate airway resistance",
+            "Assess lung distensibility",
+            "Monitor blood oxygen saturation",
+            "Measure CO2 retention"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which condition involves alveoli being perfused but not ventilated?",
+        "options": [
+            "Hypoxic hypoxia",
+            "Pulmonary capillary shunt",
+            "Stagnant hypoxia",
+            "Anemic hypoxia"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is a major complication of orotracheal intubation?",
+        "options": [
+            "Tracheomalacia",
+            "Bronchiectasis",
+            "Aspiration",
+            "Pleural effusion"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Which pressure is measured during an inspiratory hold maneuver?",
+        "options": [
+            "Peak Inspiratory Pressure (PIP)",
+            "Plateau Pressure",
+            "Mean Airway Pressure",
+            "Auto-PEEP"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is the primary goal of pressure support ventilation (PSV)?",
+        "options": [
+            "Assist spontaneous breathing",
+            "Provide full ventilatory support",
+            "Increase lung compliance",
+            "Decrease arterial CO2"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Which shock type results from decreased intravascular volume?",
+        "options": [
+            "Cardiogenic shock",
+            "Hypovolemic shock",
+            "Septic shock",
+            "Neurogenic shock"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is the purpose of an oropharyngeal airway?",
+        "options": [
+            "To maintain a patent airway in unconscious patients",
+            "To facilitate mechanical ventilation",
+            "To deliver high-flow oxygen",
+            "To prevent gag reflex"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "What is the Glasgow Coma Scale (GCS) used to assess?",
+        "options": [
+            "Lung compliance",
+            "Neurological status",
+            "Oxygen saturation",
+            "Cardiac function"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which ventilator mode is characterized by a set tidal volume with varying airway pressures?",
+        "options": [
+            "Pressure Support Ventilation (PSV)",
+            "Volume-Controlled Synchronized Intermittent Mandatory Ventilation (VC-SIMV)",
+            "Pressure-Controlled Synchronized Intermittent Mandatory Ventilation (PC-SIMV)",
+            "Airway Pressure Release Ventilation (APRV)"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is the purpose of the Richmond Agitation-Sedation Scale (RASS)?",
+        "options": [
+            "Assess sedation and agitation levels",
+            "Measure lung compliance",
+            "Evaluate ventilatory failure",
+            "Calculate respiratory rate"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Which technique is used to determine the presence of atelectasis on a chest X-ray?",
+        "options": [
+            "Observing tracheal deviation",
+            "Assessing diaphragm movement",
+            "Examining rib spacing",
+            "Checking for ground-glass opacities"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "What is the primary function of positive end-expiratory pressure (PEEP)?",
+        "options": [
+            "Increase tidal volume",
+            "Enhance oxygenation",
+            "Decrease respiratory rate",
+            "Reduce barotrauma"
+        ],
+        "answer": 1
+    }
+];
 
 
         let score = 0;
