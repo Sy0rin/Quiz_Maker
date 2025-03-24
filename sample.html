@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respiratory Physiology Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .question { margin-bottom: 20px; }
+        .question h2 { font-size: 18px; }
+        .options { list-style-type: none; padding: 0; }
+        .options li { margin: 5px 0; }
+        .feedback { margin-top: 10px; font-weight: bold; }
+        button { margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Respiratory Physiology Quiz</h1>
+    <select id="quizSetSelector" onchange="loadSelectedQuiz()">
+        <option value="set1">Respiratory Exam 1</option>
+        <option value="set2">Airway Management</option>
+        <option value="set3">Hypoxia and Oxygenation</option>
+        <option value="set4">Ventilator Settings</option>
+        <option value="set5">Blood Gas Analysis</option>
+        <option value="set6">Pulmonary Diseases</option>
+    </select>
+    <div id="quiz"></div>
+    <button onclick="showScore()">Show Score</button>
+    <div id="score" class="feedback"></div>
+
+    <script>
+        const quizSets = {
+            "set1": [
+    {"question": "What is the normal tidal volume range for an adult?", "options": ["4-6 mL/kg", "6-8 mL/kg", "8-10 mL/kg", "10-12 mL/kg"], "answer": 1},
+    {"question": "What is the main indication for intubation?", "options": ["Hypotension", "Hypoxia", "Hypercapnia", "Airway protection"], "answer": 3},
+    {"question": "Which device is used for airway clearance therapy?", "options": ["Incentive spirometer", "PEEP valve", "Flutter valve", "CPAP machine"], "answer": 2},
+    {"question": "What is the primary function of surfactant?", "options": ["Decrease surface tension", "Increase lung compliance", "Enhance mucus clearance", "Prevent alveolar collapse"], "answer": 0},
+    {"question": "What is the normal respiratory rate for an adult?", "options": ["10-12 breaths/min", "12-20 breaths/min", "20-30 breaths/min", "30-40 breaths/min"], "answer": 1},
+    {"question": "Which muscle is primarily responsible for inspiration?", "options": ["Diaphragm", "Intercostal muscles", "Abdominal muscles", "Scalene muscles"], "answer": 0},
+    {"question": "What is the normal oxygen saturation level (SpO2) for healthy adults?", "options": ["92-94%", "94-96%", "95-98%", "97-100%"], "answer": 2},
+    {"question": "What is dyspnea?", "options": ["Difficulty breathing", "Rapid breathing", "Shallow breathing", "Labored breathing"], "answer": 0},
+    {"question": "Which gas law states that volume and pressure are inversely related?", "options": ["Boyle's Law", "Charles' Law", "Dalton's Law", "Henry's Law"], "answer": 0},
+    {"question": "What is the primary goal of oxygen therapy?", "options": ["Increase CO2 levels", "Improve tissue oxygenation", "Enhance ventilation", "Decrease tidal volume"], "answer": 1},
+    {"question": "Which of the following conditions is characterized by airway obstruction?", "options": ["Asthma", "Pneumonia", "Pulmonary fibrosis", "Pulmonary edema"], "answer": 0},
+    {"question": "What is the purpose of PEEP in mechanical ventilation?", "options": ["Increase lung volume", "Decrease lung compliance", "Decrease airway pressure", "Increase oxygenation"], "answer": 3},
+    {"question": "What is orthopnea?", "options": ["Difficulty breathing when lying flat", "Rapid breathing at rest", "Shallow breathing during exercise", "Deep breathing while sitting"], "answer": 0},
+    {"question": "Which breath sound is most commonly associated with asthma?", "options": ["Wheezing", "Rhonchi", "Crackles", "Stridor"], "answer": 0},
+    {"question": "What is the most common site for arterial blood gas sampling?", "options": ["Radial artery", "Femoral artery", "Brachial artery", "Carotid artery"], "answer": 0},
+    {"question": "Which lung volume cannot be measured with spirometry?", "options": ["Residual Volume (RV)", "Tidal Volume (TV)", "Inspiratory Reserve Volume (IRV)", "Expiratory Reserve Volume (ERV)"], "answer": 0},
+    {"question": "What is the hallmark of chronic bronchitis?", "options": ["Excessive mucus production", "Pleural effusion", "Pulmonary edema", "Interstitial fibrosis"], "answer": 0},
+    {"question": "What is the primary component of airway resistance?", "options": ["Airway diameter", "Lung compliance", "Tidal volume", "Chest wall stiffness"], "answer": 0},
+    {"question": "Which respiratory pattern is often seen in metabolic acidosis?", "options": ["Kussmaul breathing", "Cheyne-Stokes", "Biot's respiration", "Shallow breathing"], "answer": 0},
+    {"question": "What is the purpose of a chest tube?", "options": ["Drain pleural fluid or air", "Administer medications", "Increase tidal volume", "Reduce lung compliance"], "answer": 0},
+    {"question": "What is the primary function of the diaphragm?", "options": ["Inspiration", "Expiration", "Mucus clearance", "Stabilizing posture"], "answer": 0},
+    {"question": "What is the best indicator of tissue oxygenation?", "options": ["SpO2", "PaO2", "Mixed venous oxygen saturation", "Peak inspiratory pressure"], "answer": 2},
+    {"question": "What is the most common cause of hypoxemia?", "options": ["Ventilation-perfusion mismatch", "Hyperventilation", "Low inspired oxygen", "Increased dead space"], "answer": 0},
+    {"question": "Which condition is associated with a barrel chest appearance?", "options": ["COPD", "Asthma", "Pneumonia", "Pulmonary fibrosis"], "answer": 0},
+    {"question": "Which of the following is a common symptom of pneumonia?", "options": ["Productive cough", "Hemoptysis", "Dyspnea", "Wheezing"], "answer": 0},
+    {"question": "Which test is used to measure lung volumes and capacities?", "options": ["Spirometry", "Bronchoscopy", "Capnography", "Pulse oximetry"], "answer": 0},
+    {"question": "Which device is used to administer continuous positive airway pressure?", "options": ["CPAP machine", "BiPAP machine", "Ventilator", "Nebulizer"], "answer": 0},
+    {"question": "What is the primary characteristic of emphysema?", "options": ["Alveolar destruction", "Mucus hypersecretion", "Bronchial constriction", "Pleural effusion"], "answer": 0},
+    {"question": "What is atelectasis?", "options": ["Collapse of lung tissue", "Increased lung compliance", "Airway hyperresponsiveness", "Fluid in the alveoli"], "answer": 0}
+],            "set2": [
+    {"question": "What is the best position for orotracheal intubation?", "options": ["Supine", "Fowler's", "Sniffing position", "Trendelenburg"], "answer": 2},
+    {"question": "What is the appropriate suction pressure for adults?", "options": ["80-100 mmHg", "100-120 mmHg", "120-150 mmHg", "150-180 mmHg"], "answer": 2},
+    {"question": "What is the purpose of cuff pressure monitoring?", "options": ["Prevent airway trauma", "Maintain PEEP", "Measure tidal volume", "Check CO2 levels"], "answer": 0},
+    {"question": "Which device is used to confirm ET tube placement?", "options": ["Capnography", "Spirometer", "Pulse oximeter", "Stethoscope"], "answer": 0},
+    {"question": "What is a potential complication of suctioning?", "options": ["Hypoxemia", "Hypertension", "Hypoglycemia", "Hyperkalemia"], "answer": 0},
+    {"question": "What is the typical size for an adult endotracheal tube?", "options": ["6-7 mm", "7-8 mm", "8-9 mm", "9-10 mm"], "answer": 1},
+    {"question": "What is the primary goal of rapid sequence intubation (RSI)?", "options": ["Minimize time without oxygen", "Increase lung volume", "Enhance CO2 removal", "Increase airway resistance"], "answer": 0},
+    {"question": "Which blade is commonly used for direct laryngoscopy?", "options": ["Macintosh", "Miller", "Wisconsin", "Doyle"], "answer": 0},
+    {"question": "Which technique minimizes the risk of gastric insufflation during bag-mask ventilation?", "options": ["Proper seal", "Low inspiratory pressure", "Short inspiratory time", "All of the above"], "answer": 3},
+    {"question": "What is the recommended frequency for suctioning an intubated patient?", "options": ["As needed", "Every 4 hours", "Every 8 hours", "Every 12 hours"], "answer": 0},
+    {"question": "What is the primary purpose of a tracheostomy tube?", "options": ["Long-term airway access", "Short-term ventilation", "Measuring tidal volume", "CO2 monitoring"], "answer": 0},
+    {"question": "What is the most common complication of intubation?", "options": ["Vocal cord injury", "Aspiration", "Hypotension", "Tracheal stenosis"], "answer": 1},
+    {"question": "Which maneuver is recommended to open the airway during CPR?", "options": ["Head tilt-chin lift", "Jaw thrust", "Neck extension", "Triple airway maneuver"], "answer": 0},
+    {"question": "Which condition is indicated by stridor after extubation?", "options": ["Laryngeal edema", "Tracheomalacia", "Bronchospasm", "Pneumothorax"], "answer": 0},
+    {"question": "What is the purpose of a nasopharyngeal airway?", "options": ["Maintain patency of the nasal passage", "Deliver oxygen directly to the lungs", "Facilitate suctioning", "Prevent oral airway obstruction"], "answer": 0},
+    {"question": "Which assessment confirms proper endotracheal tube placement?", "options": ["Capnography", "Chest X-ray", "Bilateral breath sounds", "All of the above"], "answer": 3},
+    {"question": "Which maneuver is performed to reduce gastric inflation during ventilation?", "options": ["Sellick maneuver", "Heimlich maneuver", "Jaw thrust", "Head tilt-chin lift"], "answer": 0},
+    {"question": "What is the most common site for a tracheostomy?", "options": ["Between the 2nd and 3rd tracheal rings", "Above the cricoid cartilage", "Below the vocal cords", "At the level of the larynx"], "answer": 0},
+    {"question": "Which device is commonly used to humidify inspired air in intubated patients?", "options": ["Heated humidifier", "Nebulizer", "Venturi mask", "Simple oxygen mask"], "answer": 0},
+    {"question": "What is the primary risk of excessive cuff pressure in an endotracheal tube?", "options": ["Tracheal necrosis", "Pneumothorax", "Pulmonary edema", "Atelectasis"], "answer": 0},
+    {"question": "Which technique is best for confirming tube placement after intubation?", "options": ["Chest X-ray", "Auscultation", "Capnography", "Direct visualization"], "answer": 2},
+    {"question": "What is the ideal cuff pressure for an endotracheal tube?", "options": ["20-30 cm H2O", "10-20 cm H2O", "30-40 cm H2O", "5-10 cm H2O"], "answer": 0},
+    {"question": "What type of airway is most suitable for an unconscious patient with no gag reflex?", "options": ["Oral airway", "Nasal airway", "Laryngeal mask airway", "Endotracheal tube"], "answer": 0},
+    {"question": "What is the primary function of a cuffed tracheostomy tube?", "options": ["Prevent aspiration", "Increase PEEP", "Enhance oxygenation", "Decrease airway resistance"], "answer": 0}
+],            "set3": [
+    {"question": "What is the primary cause of hypoxic hypoxia?", "options": ["Low arterial oxygen", "Anemia", "Carbon monoxide poisoning", "Poor blood circulation"], "answer": 0},
+    {"question": "What is the most common cause of hypoxemia?", "options": ["Ventilation-perfusion mismatch", "Low inspired oxygen", "Hyperventilation", "Increased dead space"], "answer": 0},
+    {"question": "Which type of hypoxia is caused by the inability of tissues to use oxygen?", "options": ["Hypoxic hypoxia", "Stagnant hypoxia", "Histotoxic hypoxia", "Anemic hypoxia"], "answer": 2},
+    {"question": "What is the typical treatment for carbon monoxide poisoning?", "options": ["100% oxygen", "Bronchodilators", "Diuretics", "Antibiotics"], "answer": 0},
+    {"question": "Which condition results from low hemoglobin levels in the blood?", "options": ["Anemic hypoxia", "Stagnant hypoxia", "Histotoxic hypoxia", "Hypoxic hypoxia"], "answer": 0},
+    {"question": "What is the best indicator of tissue oxygenation?", "options": ["PaO2", "SaO2", "SpO2", "Mixed venous oxygen saturation"], "answer": 3},
+    {"question": "Which device delivers a fixed FiO2?", "options": ["Venturi mask", "Nasal cannula", "Non-rebreather mask", "Simple mask"], "answer": 0},
+    {"question": "What is cyanosis indicative of?", "options": ["Inadequate oxygenation", "Dehydration", "Hypovolemia", "Infection"], "answer": 0},
+    {"question": "Which condition results from failure of oxygen to reach the tissues despite normal oxygen levels in the blood?", "options": ["Histotoxic hypoxia", "Anemic hypoxia", "Stagnant hypoxia", "Hypoxic hypoxia"], "answer": 2},
+    {"question": "What is the purpose of hyperbaric oxygen therapy?", "options": ["Increase dissolved oxygen in blood", "Decrease CO2 levels", "Reduce blood pressure", "Decrease airway resistance"], "answer": 0},
+    {"question": "What is the primary goal of oxygen therapy?", "options": ["Increase CO2 clearance", "Improve tissue oxygenation", "Decrease airway resistance", "Enhance mucus clearance"], "answer": 1},
+    {"question": "Which condition is characterized by reduced blood flow causing oxygen deprivation?", "options": ["Stagnant hypoxia", "Anemic hypoxia", "Histotoxic hypoxia", "Hypoxic hypoxia"], "answer": 0},
+    {"question": "What is the normal range for arterial oxygen saturation (SpO2)?", "options": ["95-100%", "90-95%", "85-90%", "80-85%"], "answer": 0},
+    {"question": "Which device provides the highest FiO2?", "options": ["Non-rebreather mask", "Nasal cannula", "Venturi mask", "Simple mask"], "answer": 0},
+    {"question": "What type of hypoxia is associated with cyanide poisoning?", "options": ["Histotoxic hypoxia", "Hypoxic hypoxia", "Anemic hypoxia", "Stagnant hypoxia"], "answer": 0},
+    {"question": "Which condition may present with clubbing of the fingers?", "options": ["Chronic hypoxia", "Acute hypercapnia", "Mild hypoxemia", "Bronchospasm"], "answer": 0},
+    {"question": "What is the PaO2 value in moderate hypoxemia?", "options": ["60-80 mmHg", "50-60 mmHg", "40-50 mmHg", "30-40 mmHg"], "answer": 1},
+    {"question": "What is the purpose of pulse oximetry?", "options": ["Measure oxygen saturation", "Assess lung compliance", "Monitor CO2 levels", "Calculate tidal volume"], "answer": 0},
+    {"question": "What is the primary symptom of hypoxemia?", "options": ["Dyspnea", "Cyanosis", "Tachycardia", "Bradycardia"], "answer": 0},
+    {"question": "Which condition can cause a rightward shift of the oxygen dissociation curve?", "options": ["Increased CO2", "Decreased temperature", "Alkalosis", "Decreased 2,3-DPG"], "answer": 0},
+    {"question": "What is the primary function of hemoglobin in the blood?", "options": ["Transport oxygen", "Store glucose", "Produce CO2", "Regulate pH"], "answer": 0},
+    {"question": "Which parameter measures the effectiveness of oxygen delivery to tissues?", "options": ["Mixed venous oxygen saturation (SvO2)", "Partial pressure of oxygen (PaO2)", "Pulse rate", "End-tidal CO2"], "answer": 0},
+    {"question": "What is hypoxemia?", "options": ["Low oxygen in blood", "Low CO2 in blood", "High oxygen in blood", "Normal oxygen in tissues"], "answer": 0},
+    {"question": "What is the primary effect of severe hypoxia on the brain?", "options": ["Cerebral edema", "Increased perfusion", "Brain ischemia", "Enhanced oxygenation"], "answer": 2},
+    {"question": "What is the primary intervention for a patient with hypoxemia?", "options": ["Administer oxygen", "Perform CPR", "Decrease ventilation", "Reduce FiO2"], "answer": 0},
+    {"question": "What is the best noninvasive method to monitor oxygenation?", "options": ["Pulse oximetry", "Capnography", "Arterial blood gas analysis", "Bronchoscopy"], "answer": 0},
+    {"question": "Which of the following is a complication of high oxygen concentration?", "options": ["Oxygen toxicity", "Hypercapnia", "Respiratory alkalosis", "Hypocapnia"], "answer": 0},
+    {"question": "What does a PaO2 of less than 60 mmHg indicate?", "options": ["Hypoxemia", "Hyperoxia", "Normoxia", "Hypercapnia"], "answer": 0},
+    {"question": "What device is recommended for precise oxygen delivery to patients with COPD?", "options": ["Venturi mask", "Non-rebreather mask", "Nasal cannula", "Simple mask"], "answer": 0}
+],            "set4": [
+    {"question": "What does PEEP stand for?", "options": ["Positive End-Expiratory Pressure", "Pulmonary Expiratory Efficiency Pressure", "Patient Endurance Enhancement Program", "Pressure Enhanced Expiratory Performance"], "answer": 0},
+    {"question": "What is the purpose of tidal volume setting on a ventilator?", "options": ["Provide appropriate lung volume", "Increase respiratory rate", "Decrease lung resistance", "Measure airway pressure"], "answer": 0},
+    {"question": "What is the recommended FiO2 range for ventilated patients?", "options": ["21-30%", "30-50%", "50-70%", "70-100%"], "answer": 1},
+    {"question": "What does the acronym SIMV stand for?", "options": ["Synchronized Intermittent Mandatory Ventilation", "Spontaneous Inspiratory Minute Volume", "Selective Inspiratory Mechanical Ventilation", "Simulated Inspiratory Monitoring Volume"], "answer": 0},
+    {"question": "Which ventilator mode delivers a preset tidal volume at a set rate?", "options": ["Volume Control Ventilation", "Pressure Control Ventilation", "CPAP", "APRV"], "answer": 0},
+    {"question": "What is the primary purpose of pressure support ventilation (PSV)?", "options": ["Assist spontaneous breathing", "Provide full ventilatory support", "Increase lung compliance", "Decrease arterial CO2"], "answer": 0},
+    {"question": "What is auto-PEEP?", "options": ["Unintentional positive pressure", "Manual PEEP adjustment", "Controlled PEEP", "Peak inspiratory pressure"], "answer": 0},
+    {"question": "What does CPAP stand for?", "options": ["Continuous Positive Airway Pressure", "Cardiac Pulse Assessment Protocol", "Central Pulmonary Airway Protection", "Controlled Positive Airway Pressure"], "answer": 0},
+    {"question": "What is the normal range for tidal volume in mechanical ventilation?", "options": ["6-8 mL/kg", "8-10 mL/kg", "4-6 mL/kg", "10-12 mL/kg"], "answer": 0},
+    {"question": "What is the primary purpose of high-frequency ventilation?", "options": ["Reduce barotrauma", "Increase tidal volume", "Enhance oxygenation", "Decrease respiratory rate"], "answer": 0},
+    {"question": "What is the typical inspiratory to expiratory (I:E) ratio for adults?", "options": ["1:2", "1:1", "2:1", "1:3"], "answer": 0},
+    {"question": "What does the pressure control mode prioritize?", "options": ["Pressure limitation", "Volume limitation", "Flow limitation", "Rate limitation"], "answer": 0},
+    {"question": "What is the most common complication of mechanical ventilation?", "options": ["Ventilator-Associated Pneumonia (VAP)", "Barotrauma", "Hypoxemia", "Hypotension"], "answer": 0},
+    {"question": "What parameter is adjusted to decrease carbon dioxide levels?", "options": ["Respiratory rate", "FiO2", "PEEP", "Tidal volume"], "answer": 0},
+    {"question": "What is the primary risk of setting tidal volume too high?", "options": ["Barotrauma", "Hypocapnia", "Bradycardia", "Hypotension"], "answer": 0},
+    {"question": "What is the purpose of inverse ratio ventilation (IRV)?", "options": ["Improve oxygenation", "Increase CO2 elimination", "Reduce respiratory rate", "Enhance lung compliance"], "answer": 0},
+    {"question": "What does APRV stand for?", "options": ["Airway Pressure Release Ventilation", "Alternative Positive Respiration Volume", "Adjusted Pulmonary Resistance Ventilation", "Acute Pulmonary Recovery Ventilation"], "answer": 0},
+    {"question": "What is the purpose of recruitment maneuvers?", "options": ["Open collapsed alveoli", "Decrease tidal volume", "Increase CO2 clearance", "Enhance mucus clearance"], "answer": 0},
+    {"question": "What parameter is most affected by ventilator settings in ARDS patients?", "options": ["Tidal volume", "PEEP", "FiO2", "Inspiratory flow"], "answer": 1},
+    {"question": "What is the purpose of a ventilator flow trigger?", "options": ["Initiate a breath when a set flow is detected", "Monitor CO2 levels", "Adjust tidal volume", "Increase PEEP"], "answer": 0},
+    {"question": "What is the goal of lung-protective ventilation strategies?", "options": ["Minimize barotrauma", "Increase tidal volume", "Reduce oxygen toxicity", "Enhance lung compliance"], "answer": 0},
+    {"question": "What is the recommended PEEP level in ARDS patients?", "options": ["5-15 cm H2O", "10-20 cm H2O", "20-30 cm H2O", "30-40 cm H2O"], "answer": 0},
+    {"question": "Which ventilator setting directly affects oxygenation?", "options": ["FiO2", "Respiratory rate", "Tidal volume", "Inspiratory flow"], "answer": 0},
+    {"question": "What does a high plateau pressure indicate?", "options": ["Reduced lung compliance", "Increased airway resistance", "High tidal volume", "Enhanced oxygenation"], "answer": 0},
+    {"question": "What is the purpose of pressure-controlled ventilation?", "options": ["Limit peak airway pressure", "Increase CO2 elimination", "Enhance minute ventilation", "Reduce respiratory drive"], "answer": 0},
+    {"question": "Which parameter is adjusted to correct respiratory acidosis?", "options": ["Increase respiratory rate", "Decrease tidal volume", "Decrease PEEP", "Increase FiO2"], "answer": 0},
+    {"question": "What is the purpose of a spontaneous breathing trial (SBT)?", "options": ["Assess readiness for extubation", "Increase lung compliance", "Decrease oxygen demand", "Enhance CO2 clearance"], "answer": 0},
+    {"question": "What does a high PIP indicate?", "options": ["Airway resistance", "Low lung compliance", "Hypoventilation", "Hypercapnia"], "answer": 0}
+],            "set5": [
+    {"question": "What is the normal range for arterial pH?", "options": ["7.35-7.45", "7.25-7.35", "7.45-7.55", "7.15-7.25"], "answer": 0},
+    {"question": "What is the PaO2 range for a healthy adult?", "options": ["60-80 mmHg", "80-100 mmHg", "40-60 mmHg", "100-120 mmHg"], "answer": 1},
+    {"question": "What is the normal range for PaCO2?", "options": ["35-45 mmHg", "25-35 mmHg", "45-55 mmHg", "55-65 mmHg"], "answer": 0},
+    {"question": "What is the normal bicarbonate (HCO3) range?", "options": ["22-26 mEq/L", "18-22 mEq/L", "28-32 mEq/L", "26-30 mEq/L"], "answer": 0},
+    {"question": "What is the primary buffer system of the body?", "options": ["Bicarbonate-carbonic acid system", "Phosphate buffer system", "Protein buffer system", "Hemoglobin buffer system"], "answer": 0},
+    {"question": "Which condition is characterized by a low pH and high PaCO2?", "options": ["Respiratory acidosis", "Metabolic acidosis", "Respiratory alkalosis", "Metabolic alkalosis"], "answer": 0},
+    {"question": "What does a high anion gap indicate?", "options": ["Metabolic acidosis", "Respiratory alkalosis", "Metabolic alkalosis", "Respiratory acidosis"], "answer": 0},
+    {"question": "What is the formula to calculate the anion gap?", "options": ["Na - (Cl + HCO3)", "K - (Na + Cl)", "Ca - (Na + HCO3)", "Mg - (Cl + CO2)"], "answer": 0},
+    {"question": "What condition is indicated by a high pH and low PaCO2?", "options": ["Respiratory alkalosis", "Metabolic alkalosis", "Respiratory acidosis", "Metabolic acidosis"], "answer": 0},
+    {"question": "What is the most common cause of metabolic acidosis?", "options": ["Lactic acidosis", "Hyperventilation", "Pulmonary embolism", "Pneumonia"], "answer": 0},
+    {"question": "What is the expected compensation for metabolic acidosis?", "options": ["Hyperventilation", "Hypoventilation", "Increased bicarbonate", "Decreased bicarbonate"], "answer": 0},
+    {"question": "What parameter indicates hypoxemia?", "options": ["PaO2 < 60 mmHg", "SpO2 < 90%", "PaCO2 > 50 mmHg", "HCO3 < 22 mEq/L"], "answer": 0},
+    {"question": "What is the primary cause of respiratory alkalosis?", "options": ["Hyperventilation", "Hypoventilation", "Metabolic compensation", "Renal failure"], "answer": 0},
+    {"question": "What acid-base disorder is associated with diabetic ketoacidosis?", "options": ["Metabolic acidosis", "Respiratory alkalosis", "Metabolic alkalosis", "Respiratory acidosis"], "answer": 0},
+    {"question": "Which of the following is a primary cause of respiratory acidosis?", "options": ["COPD", "Hyperventilation", "Renal failure", "Hypovolemia"], "answer": 0},
+    {"question": "What is the primary compensatory mechanism for metabolic alkalosis?", "options": ["Hypoventilation", "Hyperventilation", "Increased bicarbonate", "Increased lactate"], "answer": 0},
+    {"question": "What ABG finding is indicative of metabolic acidosis?", "options": ["Low pH, low HCO3", "High pH, high HCO3", "Low pH, high HCO3", "High pH, low HCO3"], "answer": 0},
+    {"question": "What is the typical cause of respiratory alkalosis?", "options": ["Hyperventilation", "Hypoventilation", "Diabetic ketoacidosis", "Lactic acidosis"], "answer": 0},
+    {"question": "Which electrolyte imbalance commonly accompanies metabolic alkalosis?", "options": ["Hypokalemia", "Hyperkalemia", "Hyponatremia", "Hypernatremia"], "answer": 0},
+    {"question": "What is the compensation for respiratory acidosis?", "options": ["Increased bicarbonate reabsorption", "Decreased bicarbonate reabsorption", "Hyperventilation", "Hypoventilation"], "answer": 0},
+    {"question": "What is the normal base excess range?", "options": ["-2 to +2 mEq/L", "-5 to +5 mEq/L", "0 to +4 mEq/L", "-4 to +4 mEq/L"], "answer": 0},
+    {"question": "What acid-base disturbance is seen with chronic vomiting?", "options": ["Metabolic alkalosis", "Metabolic acidosis", "Respiratory alkalosis", "Respiratory acidosis"], "answer": 0},
+    {"question": "What is the expected PaCO2 in metabolic acidosis?", "options": ["Decreased", "Increased", "Normal", "Fluctuating"], "answer": 0},
+    {"question": "What condition is characterized by increased CO2 levels in the blood?", "options": ["Hypercapnia", "Hypocapnia", "Hypoxia", "Hyperoxia"], "answer": 0},
+    {"question": "What is the compensatory response to metabolic acidosis?", "options": ["Increased respiratory rate", "Decreased respiratory rate", "Increased bicarbonate production", "Decreased bicarbonate production"], "answer": 0},
+    {"question": "What is the normal range for mixed venous oxygen saturation (SvO2)?", "options": ["60-80%", "80-100%", "50-60%", "40-50%"], "answer": 0},
+    {"question": "Which acid-base disturbance is common in acute renal failure?", "options": ["Metabolic acidosis", "Metabolic alkalosis", "Respiratory acidosis", "Respiratory alkalosis"], "answer": 0},
+    {"question": "What is the significance of a positive base excess?", "options": ["Indicates metabolic alkalosis", "Indicates metabolic acidosis", "Indicates respiratory acidosis", "Indicates respiratory alkalosis"], "answer": 0},
+    {"question": "What is the common acid-base abnormality in sepsis?", "options": ["Metabolic acidosis", "Respiratory alkalosis", "Metabolic alkalosis", "Respiratory acidosis"], "answer": 0}
+]};
+
+
+        let score = 0;
+
+        function loadSelectedQuiz() {
+            const selectedSet = document.getElementById("quizSetSelector").value;
+            loadQuiz(quizSets[selectedSet]);
+        }
+
+        function loadQuiz(quizData) {
+            const quizContainer = document.getElementById("quiz");
+            quizContainer.innerHTML = "";
+            quizData.forEach((data, index) => {
+                const questionDiv = document.createElement("div");
+                questionDiv.classList.add("question");
+
+                const questionTitle = document.createElement("h2");
+                questionTitle.innerText = (index + 1) + ". " + data.question;
+                questionDiv.appendChild(questionTitle);
+
+                const optionsList = document.createElement("ul");
+                optionsList.classList.add("options");
+
+                data.options.forEach((option, i) => {
+                    const optionItem = document.createElement("li");
+                    const optionButton = document.createElement("button");
+                    optionButton.innerText = option;
+                    optionButton.onclick = () => checkAnswer(data, i, optionButton);
+                    optionItem.appendChild(optionButton);
+                    optionsList.appendChild(optionItem);
+                });
+
+                questionDiv.appendChild(optionsList);
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        function checkAnswer(data, optionIndex, button) {
+            const isCorrect = optionIndex === data.answer;
+            const feedback = document.createElement("div");
+            feedback.classList.add("feedback");
+            feedback.innerText = isCorrect ? "Correct!" : "Incorrect!";
+            button.parentNode.appendChild(feedback);
+
+            if (isCorrect) {
+                score++;
+            }
+
+            const options = button.parentNode.parentNode.querySelectorAll("button");
+            options.forEach(btn => btn.disabled = true);
+        }
+
+        function showScore() {
+            const scoreContainer = document.getElementById("score");
+            scoreContainer.innerText = "You scored " + score + " out of " + quizSets[document.getElementById("quizSetSelector").value].length;
+        }
+
+        loadSelectedQuiz();
+    </script>
+</body>
+</html>
