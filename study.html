@@ -23,236 +23,156 @@
 
     <script>
         const quizData = [
-    {
-        "question": "What is the proper depth for an endotracheal tube during orotracheal intubation?",
-        "options": [
-            "15-16 cm",
-            "20-21 cm",
-            "25-26 cm",
-            "18-19 cm"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is the purpose of a PEEP valve?",
-        "options": [
-            "To reduce airway resistance",
-            "To maintain alveolar volumes and prevent collapse",
-            "To measure tidal volume",
-            "To monitor blood oxygen levels"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is the normal location of an endotracheal tube tip on a chest X-ray?",
-        "options": [
-            "5-7 cm above the carina",
-            "2-4 cm above the carina",
-            "1-2 cm below the vocal cords",
-            "At the level of the third rib"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What suction technique is used when the catheter is attached to the ventilator circuit?",
-        "options": [
-            "Open suctioning",
-            "Closed suctioning",
-            "Direct suctioning",
-            "Indirect suctioning"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is the formula for calculating minute ventilation?",
-        "options": [
-            "VE = Vt × f",
-            "VE = PEEP × RR",
-            "VE = CO × HR",
-            "VE = FiO2 × Vt"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "What does the BLUE protocol assess?",
-        "options": [
-            "Neurological function",
-            "Acute respiratory failure",
-            "Cardiac output",
-            "Cerebral blood flow"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is the primary cause of airway trauma during intubation?",
-        "options": [
-            "Tube movement",
-            "High suction pressure",
-            "Patient coughing",
-            "Improper catheter size"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "What is the normal PIP (Peak Inspiratory Pressure) to minimize barotrauma?",
-        "options": [
-            "20-25 cmH2O",
-            "25-30 cmH2O",
-            "30-35 cmH2O",
-            "35-40 cmH2O"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Which type of hypoxia is caused by decreased hemoglobin levels?",
-        "options": [
-            "Hypoxic hypoxia",
-            "Histotoxic hypoxia",
-            "Anemic hypoxia",
-            "Stagnant hypoxia"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "What does a color change from purple to gold in a CO2 detector indicate?",
-        "options": [
-            "Presence of carbon dioxide",
-            "Absence of oxygen",
-            "Hyperventilation",
-            "Collapsed lung"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "What is a common indication for NT suctioning?",
-        "options": [
-            "Blocked airway",
-            "Retained secretions with ineffective cough",
-            "Collapsed lung",
-            "Airway hyperresponsiveness"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is the role of static compliance calculation?",
-        "options": [
-            "Evaluate airway resistance",
-            "Assess lung distensibility",
-            "Monitor blood oxygen saturation",
-            "Measure CO2 retention"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which condition involves alveoli being perfused but not ventilated?",
-        "options": [
-            "Hypoxic hypoxia",
-            "Pulmonary capillary shunt",
-            "Stagnant hypoxia",
-            "Anemic hypoxia"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is a major complication of orotracheal intubation?",
-        "options": [
-            "Tracheomalacia",
-            "Bronchiectasis",
-            "Aspiration",
-            "Pleural effusion"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "Which pressure is measured during an inspiratory hold maneuver?",
-        "options": [
-            "Peak Inspiratory Pressure (PIP)",
-            "Plateau Pressure",
-            "Mean Airway Pressure",
-            "Auto-PEEP"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is the primary goal of pressure support ventilation (PSV)?",
-        "options": [
-            "Assist spontaneous breathing",
-            "Provide full ventilatory support",
-            "Increase lung compliance",
-            "Decrease arterial CO2"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "Which shock type results from decreased intravascular volume?",
-        "options": [
-            "Cardiogenic shock",
-            "Hypovolemic shock",
-            "Septic shock",
-            "Neurogenic shock"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is the purpose of an oropharyngeal airway?",
-        "options": [
-            "To maintain a patent airway in unconscious patients",
-            "To facilitate mechanical ventilation",
-            "To deliver high-flow oxygen",
-            "To prevent gag reflex"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "What is the Glasgow Coma Scale (GCS) used to assess?",
-        "options": [
-            "Lung compliance",
-            "Neurological status",
-            "Oxygen saturation",
-            "Cardiac function"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which ventilator mode is characterized by a set tidal volume with varying airway pressures?",
-        "options": [
-            "Pressure Support Ventilation (PSV)",
-            "Volume-Controlled Synchronized Intermittent Mandatory Ventilation (VC-SIMV)",
-            "Pressure-Controlled Synchronized Intermittent Mandatory Ventilation (PC-SIMV)",
-            "Airway Pressure Release Ventilation (APRV)"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is the purpose of the Richmond Agitation-Sedation Scale (RASS)?",
-        "options": [
-            "Assess sedation and agitation levels",
-            "Measure lung compliance",
-            "Evaluate ventilatory failure",
-            "Calculate respiratory rate"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "Which technique is used to determine the presence of atelectasis on a chest X-ray?",
-        "options": [
-            "Observing tracheal deviation",
-            "Assessing diaphragm movement",
-            "Examining rib spacing",
-            "Checking for ground-glass opacities"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "What is the primary function of positive end-expiratory pressure (PEEP)?",
-        "options": [
-            "Increase tidal volume",
-            "Enhance oxygenation",
-            "Decrease respiratory rate",
-            "Reduce barotrauma"
-        ],
-        "answer": 1
-    }
+  {
+    "question": "Which instrument side is used to hear high frequency sounds like wheezing?",
+    "options": ["Bell", "Diaphragm", "Stethoscope tube", "Auscultator base"],
+    "answer": 1
+  },
+  {
+    "question": "Which lung sound is characterized by a harsh, hollow, tubular quality and is normally heard over the trachea?",
+    "options": ["Bronchial", "Vesicular", "Bronchovesicular", "Crackles"],
+    "answer": 0
+  },
+  {
+    "question": "Crackles are caused by:",
+    "options": ["Airway constriction", "Obstruction", "Spontaneous opening of small airways", "Fluid in pleural space"],
+    "answer": 2
+  },
+  {
+    "question": "Which sound is a harsh vibrating noise caused by airway obstruction?",
+    "options": ["Stridor", "Wheezing", "Crackles", "Rhonchi"],
+    "answer": 0
+  },
+  {
+    "question": "The P wave on an ECG represents:",
+    "options": ["Atrial depolarization", "Ventricular depolarization", "Ventricular repolarization", "Atrial repolarization"],
+    "answer": 0
+  },
+  {
+    "question": "A PR interval longer than 0.2 seconds suggests which condition?",
+    "options": ["First-degree AV block", "Atrial flutter", "Sinus bradycardia", "Bundle branch block"],
+    "answer": 0
+  },
+  {
+    "question": "Which AV block type features progressively lengthening PR intervals?",
+    "options": ["Mobitz II", "Wenckebach (Mobitz I)", "Third-degree block", "First-degree block"],
+    "answer": 1
+  },
+  {
+    "question": "In third-degree AV block:",
+    "options": ["There is no relationship between P and QRS", "PR intervals gradually increase", "Some P waves are not followed by QRS", "QRS complexes are always wide"],
+    "answer": 0
+  },
+  {
+    "question": "A bundle branch block is indicated by:",
+    "options": ["A single R wave", "ST elevation", "Two R waves", "T wave inversion"],
+    "answer": 2
+  },
+  {
+    "question": "Which arrhythmia involves multiple atrial foci and chaotic atrial spikes?",
+    "options": ["Atrial fibrillation", "Atrial flutter", "Ventricular flutter", "PAC"],
+    "answer": 0
+  },
+  {
+    "question": "Atrial flutter typically shows what characteristic rhythm?",
+    "options": ["Sawtooth pattern, 250-300 bpm", "Wide QRS complex", "Narrow QRS with dropped beats", "Flatline atria"],
+    "answer": 0
+  },
+  {
+    "question": "Diffuse crackles and atelectasis in a post-op patient most likely result from:",
+    "options": ["Body position reluctance", "Fever", "Infection", "Asthma"],
+    "answer": 0
+  },
+  {
+    "question": "What color appears on a chest x-ray when an area is radiolucent (air-filled)?",
+    "options": ["White", "Gray", "Black", "Light blue"],
+    "answer": 2
+  },
+  {
+    "question": "On a PA chest x-ray film, the heart appears:",
+    "options": ["Smaller and sharper", "Larger and blurrier", "Magnified", "More lateral"],
+    "answer": 0
+  },
+  {
+    "question": "What radiographic sign is typical of pulmonary edema?",
+    "options": ["Butterfly pattern", "Plate-like infiltrates", "No vascular markings", "Tombstone heart"],
+    "answer": 0
+  },
+  {
+    "question": "Which condition causes the trachea to shift toward the affected side?",
+    "options": ["Atelectasis", "Pleural effusion", "Pneumothorax", "Pulmonary edema"],
+    "answer": 0
+  },
+  {
+    "question": "What radiographic pattern is associated with ARDS?",
+    "options": ["Ground glass appearance", "Butterfly pattern", "Plate-like shadows", "Hyperlucency"],
+    "answer": 0
+  },
+  {
+    "question": "Best treatment strategy for ARDS includes:",
+    "options": ["Low tidal volumes and PEEP", "High tidal volume and zero PEEP", "Large fluid bolus", "Bronchodilator therapy"],
+    "answer": 0
+  },
+  {
+    "question": "Tactile fremitus during palpation is increased in cases of:",
+    "options": ["Consolidation", "Pneumothorax", "Emphysema", "Hyperresonance"],
+    "answer": 0
+  },
+  {
+    "question": "A hyperresonant percussion note suggests:",
+    "options": ["Normal lungs", "Pneumonia", "Pneumothorax", "Pleural effusion"],
+    "answer": 2
+  },
+  {
+    "question": "Tympanic percussion sounds indicate:",
+    "options": ["Consolidation", "Air collection", "Fluid buildup", "Atelectasis"],
+    "answer": 1
+  },
+  {
+    "question": "Dullness to percussion is found over:",
+    "options": ["Hyperinflated lungs", "Air trapping", "Pleural effusion", "Open airway"],
+    "answer": 2
+  },
+  {
+    "question": "Which of the following is most sensitive to electrical interference during ECG?",
+    "options": ["P wave", "60-cycle rhythm", "PR interval", "QRS complex"],
+    "answer": 1
+  },
+  {
+    "question": "What is the first physiological sign of hypoxia?",
+    "options": ["Cyanosis", "Tachycardia", "Bradycardia", "Decreased respiratory rate"],
+    "answer": 1
+  },
+  {
+    "question": "A narrow QRS complex with no visible P wave indicates stimulation at the:",
+    "options": ["SA node", "Ventricular wall", "AV node", "Purkinje fibers"],
+    "answer": 2
+  },
+  {
+    "question": "Which ECG pattern is typically caused by ventricular fibrillation?",
+    "options": ["Chaotic, wide complex rhythm", "Sawtooth P waves", "Dropped QRS", "Irregular narrow complex rhythm"],
+    "answer": 0
+  },
+  {
+    "question": "A PAC is best described as:",
+    "options": ["Early P wave with abnormal shape", "Wide QRS with no P wave", "Sawtooth atrial rhythm", "Dropped beat"],
+    "answer": 0
+  },
+  {
+    "question": "Which condition produces the 'tombstone sign' on x-ray?",
+    "options": ["Emphysema", "Pneumonia", "Pleural effusion", "ARDS"],
+    "answer": 0
+  },
+  {
+    "question": "Guillain-Barré syndrome affects respiratory mechanics by:",
+    "options": ["Causing diaphragmatic weakness", "Increasing airway resistance", "Causing consolidation", "Triggering asthma"],
+    "answer": 0
+  },
+  {
+    "question": "Which of the following causes increased PIP due to airway resistance?",
+    "options": ["Kinked endotracheal tube", "Pulmonary edema", "ARDS", "Atelectasis"],
+    "answer": 0
+  }
 ];
 
 
